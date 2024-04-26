@@ -2,7 +2,7 @@ import Header from './components/Header.jsx';
 import UserInput from './components/UserInput.jsx';
 import { useState } from 'react';
 
-const [userInput, setUserInput] = useState({
+const [userValues, setUserValues] = useState({
   initialInvestment: 10000,
   annualInvestment: 1200,
   expectedReturn: 6,
@@ -10,9 +10,9 @@ const [userInput, setUserInput] = useState({
 })
 
 function handleChange(inputId, newValue) {
-  setUserInput((prevUserInput) => {
+  setUserValues((prevUserValues) => {
     return {
-      ...prevUserInput,
+      ...prevUserValues,
       [inputId]: newValue 
     }
   });
@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <Header />
-      <UserInput onChange={handleChange} userInput={userInput}/>
+      <UserInput onChange={handleChange} userValues={userValues}/>
     </>
   )
 }

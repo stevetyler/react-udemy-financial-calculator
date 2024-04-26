@@ -1,4 +1,4 @@
-import { useState } from 'react';export default function UserInput({ handleChange, userInput }) {
+export default function UserInput({ handleChange, userValues }) {
   
   return (
     <section id="user-input">
@@ -9,7 +9,7 @@ import { useState } from 'react';export default function UserInput({ handleChang
             id="initialInvestment" 
             type="number" 
             onChange={(event) => handleChange(event.target.id, event.target.value)} 
-            value={userInput.initialInvestment} required/>
+            value={userValues.initialInvestment} required/>
         </p>
         <p>
           <label>ANNUAL INVESTMENT</label>
