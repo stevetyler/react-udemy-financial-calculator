@@ -1,41 +1,33 @@
-import Header from './components/Header.jsx';
-import UserInput from './components/UserInput.jsx';
-import Result from './components/Result.jsx';
-
 import { useState } from 'react';
 
+import Header from './components/Header.jsx';
+import UserInput from './components/UserInput.jsx';
+import Results from './components/Results.jsx';
+
 function App() {
-  const [userValues, setUserValues] = useState({
+  const [userInput, setUserInput] = useState({
     initialInvestment: 10000,
     annualInvestment: 1200,
     expectedReturn: 6,
-    duration: 12
-  });  
+    duration: 10,
+  });
 
-  const inputIsValid = userValues.duration > 0;
-
-  function handleChange(inputId, newValue) {
-    setUserValues((prevUserValues) => {
+  function handleChange(inputIdentifier, newValue) {
+    setUserInput((prevUserInput) => {
       return {
-        ...prevUserValues,
-        [inputId]: +newValue // set as number not string
-      }
+        ...prevUserInput,
+        [inputIdentifier]: newValue,
+      };
     });
-  };
-
+  }
 
   return (
     <>
       <Header />
-      <UserInput handleChange={handleChange} userValues={userValues}/>
-      {!inputIsValid && (
-        <p className="center">Please enter a valid duration</p>
-      )}
-      {inputIsValid &&
-        <Result userValues={userValues}/>
-      }
+      <UserInput userInput={userInput} onChange={handleChange} />
+      <Results input={userInput} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
